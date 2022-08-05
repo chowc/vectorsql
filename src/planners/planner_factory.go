@@ -13,6 +13,7 @@ import (
 
 type planCreator func(ast sqlparser.Statement) IPlan
 
+// 根据语句类型找到对应的执行计划生成类
 var table = map[string]planCreator{
 	sqlparser.NodeNameUse:            NewUsePlan,
 	sqlparser.NodeNameSelect:         NewSelectPlan,

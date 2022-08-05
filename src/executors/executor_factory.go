@@ -14,6 +14,7 @@ import (
 
 type executorCreator func(ctx *ExecutorContext, plan planners.IPlan) IExecutor
 
+// 根据执行计划找到对应的 Executor
 var table = map[reflect.Type]executorCreator{
 	reflect.TypeOf(&planners.UsePlan{}):            NewUseExecutor,
 	reflect.TypeOf(&planners.SelectPlan{}):         NewSelectExecutor,

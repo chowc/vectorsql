@@ -49,7 +49,7 @@ func (s *HTTPHandler) processQuery(query string, rw io.Writer) (err error) {
 		log.Error("%+v", err)
 		return err
 	}
-
+	// 写结果
 	if err = s.processOrdinaryQuery(rw, session, result.In); err != nil {
 		return
 	}

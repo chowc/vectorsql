@@ -10,7 +10,9 @@ import (
 )
 
 type IPlan interface {
+	// 根据 statement 构建一个执行计划
 	Build() error
+	// 遍历执行计划
 	Walk(visit Visit) error
 	String() string
 }
@@ -22,6 +24,7 @@ func Walk(visit Visit, plans ...IPlan) error {
 		if plan == nil {
 			continue
 		}
+		// 递归 visit plan
 		kontinue, err := visit(plan)
 		if err != nil {
 			return err
