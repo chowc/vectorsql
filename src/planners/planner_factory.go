@@ -36,6 +36,7 @@ func PlanFactory(query string) (IPlan, error) {
 	if !ok {
 		return nil, errors.Errorf("Couldn't get the planner:%T", statement)
 	}
+	// creator 是一个函数，调用它会构造返回对应类型的 IPlan，调用 IPlan.Build 再根据 Statement 构造出执行计划。
 	plan := creator(statement)
 	return plan, plan.Build()
 }

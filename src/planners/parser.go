@@ -135,6 +135,7 @@ func parseFunctionArgument(aliases map[string]IPlan, expr *sqlparser.AliasedExpr
 func parseAliasedTableExpression(expr *sqlparser.AliasedTableExpr) (IPlan, error) {
 	switch subExpr := expr.Expr.(type) {
 	case sqlparser.TableName:
+		// "select version()" 的时候，subExpr.Name = "dual"，是在哪里加上的？
 		return NewScanPlan(subExpr.Name.String(), subExpr.Qualifier.String()), nil
 	default:
 		return nil, errors.Errorf("Unsupported aliased table expression:%+v", expr.Expr)

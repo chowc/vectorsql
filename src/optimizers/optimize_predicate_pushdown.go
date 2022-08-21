@@ -27,7 +27,7 @@ var PredicatePushDownOptimizer = Optimizer{
 		if err := planners.Walk(visit, plan); err != nil {
 			return
 		}
-
+		// 如果是 ScanPlan，就给 ScanPlan 加一个 Filter。
 		if scan != nil && filter != nil {
 			scan.Filter = filter
 		}

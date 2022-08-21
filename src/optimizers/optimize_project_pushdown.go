@@ -28,6 +28,7 @@ var ProjectPushDownOptimizer = Optimizer{
 			return
 		}
 
+		// 如果是 ScanPlan，就给 ScanPlan 加一个 Project。
 		if scan != nil && project != nil {
 			scan.Project = project
 		}
