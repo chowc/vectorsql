@@ -12,6 +12,7 @@ type SinkPlan struct {
 	Name string
 }
 
+// 兜底 Plan
 func NewSinkPlan() *SinkPlan {
 	return &SinkPlan{
 		Name: "SinkPlan",

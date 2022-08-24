@@ -9,8 +9,9 @@ import (
 )
 
 type OutPort struct {
-	mu     sync.Mutex
-	name   string
+	mu   sync.Mutex
+	name string
+	// 连接到下一个结点，将数据传递到下一个 IProcessor
 	edges  []*InPort
 	closed bool
 }

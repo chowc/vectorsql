@@ -119,7 +119,7 @@ func (p *BaseProcessor) Subscribe(eventHandlers ...EventHandler) {
 			}
 			return
 		case x, ok := <-in.Recv():
-			if !ok {
+			if !ok { // 如果接收端没有新数据，就执行自己的逻辑，否则执行 nextHandler 处理接收到的数据。
 				if p.doneHandler != nil {
 					start := time.Now()
 					p.doneHandler()

@@ -26,6 +26,7 @@ var table = map[string]planCreator{
 	sqlparser.NodeNameInsert:         NewInsertPlan,
 }
 
+// 编译获得 Statement，再根据 Statement 建立执行计划。
 func PlanFactory(query string) (IPlan, error) {
 	statement, err := parsers.Parse(query)
 	if err != nil {

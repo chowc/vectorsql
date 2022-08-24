@@ -12,6 +12,7 @@ type InPort struct {
 	mu          sync.Mutex
 	ch          chan interface{}
 	name        string
+	// 需要记录自己有多少个下游
 	edges       []*OutPort
 	closed      bool
 	closeCounts int
@@ -53,10 +54,12 @@ func (pt *InPort) Recv() <-chan interface{} {
 	return pt.ch
 }
 
+// 由发送端关闭 channel。
 func (pt *InPort) Close() {
 	pt.mu.Lock()
 	defer pt.mu.Unlock()
 	if !pt.closed {
+		// 全部 OutPort 调了 Close，才会真正关闭 channal。
 		pt.closeCounts++
 		if pt.closeCounts >= len(pt.edges) {
 			close(pt.ch)

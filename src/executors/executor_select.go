@@ -59,6 +59,7 @@ func (executor *SelectExecutor) Execute() (*Result, error) {
 			return nil, errors.Errorf("Unsupported plan:%T", plan)
 		}
 	}
+	// 调用 subExecutors 的 Execute 方法
 	pipeline, err := tree.BuildPipeline()
 	if err != nil {
 		return nil, err

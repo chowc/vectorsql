@@ -10,6 +10,10 @@ import (
 	"parsers/sqlparser"
 )
 
+// 编译获得 AST，Statement 相当于 Expr/Stmt。Statement 同时也是一个 SQLNode。
+// "select * from t;" 是一个 Statement；
+// SQLNode 相当于是 Expr，可以在 SQLNode 上调用 Walk(Visitor)。
+// Expr 可以是树结构。
 func Parse(sql string) (sqlparser.Statement, error) {
 	node, err := sqlparser.ParseStrictDDL(sql)
 	if err != nil && strings.HasPrefix(strings.ToLower(sql), "insert") {
