@@ -66,7 +66,7 @@ func (s *TCPHandler) processQuery(session *TCPSession) error {
 		if err := s.processOrdinaryQuery(session, result.In); err != nil {
 			return err
 		}
-	} else if result.Out != nil {
+	} else if result.Out != nil { // 表示已经执行完成，直接写结果？
 		if err := s.processInsertQuery(session, result.Out); err != nil {
 			return err
 		}

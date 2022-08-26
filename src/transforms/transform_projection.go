@@ -20,6 +20,7 @@ type ProjectionTransform struct {
 	processors.BaseProcessor
 }
 
+// 将 ProjectPlan 转换成 IProcessor
 func NewProjectionTransform(ctx *TransformContext, plan *planners.ProjectionPlan) processors.IProcessor {
 	return &ProjectionTransform{
 		ctx:           ctx,

@@ -27,7 +27,7 @@ func (pipeline *Pipeline) Add(proc IProcessor) *Pipeline {
 	defer pipeline.mu.Unlock()
 
 	proc.SetContext(ctx)
-	// 建立起 Processor 之间的数据流动关系。
+	// 建立起 IProcessor/Tranform/BaseProcessor 之间的数据流动关系。
 	if len(pipeline.processors) > 0 {
 		source := pipeline.processors[pipeline.index-1]
 		proc.From(source)

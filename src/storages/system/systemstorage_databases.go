@@ -45,6 +45,7 @@ func (storage *SystemDatabasesStorage) GetInputStream(session *sessions.Session)
 	log := ctx.log
 
 	// Block.
+	// fake data
 	block := datablocks.NewDataBlock(storage.Columns())
 	if err := ctx.databasesFillFunc(block); err != nil {
 		return nil, err
